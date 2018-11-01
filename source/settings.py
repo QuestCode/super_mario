@@ -24,6 +24,9 @@ class Settings():
         self.jumping_mario_images = [self.__load_image('mario-' + str(x) + '.png',-1) for x in range(8,16)]
         self.running_mario_images = [self.__load_image('mario-' + str(x) + '.png',-1) for x in range(1,4)]
 
+        self.pipe_short_image = self.__load_image('pipe_short.png')
+        self.pipe_tall_image = self.__load_image('pipe_tall.png')
+
 
     def __load_image(self,name, colorkey=None):
         fullname = os.path.join('assets', 'images')

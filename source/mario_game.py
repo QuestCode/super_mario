@@ -3,6 +3,7 @@ from pygame.locals import *
 import os, sys
 from source.settings import Settings
 from source.mario import Mario
+from source.pipe import Pipe
 
 class MarioGame:
 
@@ -20,11 +21,15 @@ class MarioGame:
         self.win.blit(self.bg, (self.bgX,0))
         self.win.blit(self.bg,(self.bgX2,0))
         self.mario.draw()
+        self.short_pipe.draw()
+        self.tall_pipe.draw()
         pygame.display.update()
 
 
     def start(self):
         self.mario = Mario(self.game_settings,self.win)
+        self.short_pipe = Pipe(self.game_settings,self.win,True,400,160)
+        self.tall_pipe = Pipe(self.game_settings,self.win,False,600,135)
         pygame.time.set_timer(USEREVENT+1,500)
         self.speed = 30
 
