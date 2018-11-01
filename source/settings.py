@@ -27,6 +27,9 @@ class Settings():
         self.pipe_short_image = self.__load_image('pipe_short.png')
         self.pipe_tall_image = self.__load_image('pipe_tall.png')
 
+        self.brick_box_image = self.__load_image('box_brick.png')
+        self.mystery_box_image = self.__load_image('box_mystery.png')
+
 
     def __load_image(self,name, colorkey=None):
         fullname = os.path.join('assets', 'images')

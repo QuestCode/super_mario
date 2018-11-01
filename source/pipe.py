@@ -3,14 +3,12 @@ from pygame.locals import *
 
 class Pipe:
     def __init__(self, game_settings,window,short,x,y):
-        self.game_settings = game_settings
-        self.win = window
+        self.game_settings,self.win = game_settings,window
+        self.x, self.y = x, y
         if short:
             self.image = self.game_settings.pipe_short_image
         else:
             self.image = self.game_settings.pipe_tall_image
-        self.x = x
-        self.y = y
         self.image_con = self.image.convert()
 
     def draw(self):

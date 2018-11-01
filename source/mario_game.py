@@ -4,6 +4,7 @@ import os, sys
 from source.settings import Settings
 from source.mario import Mario
 from source.pipe import Pipe
+from source.box import Box
 
 class MarioGame:
 
@@ -23,6 +24,8 @@ class MarioGame:
         self.mario.draw()
         self.short_pipe.draw()
         self.tall_pipe.draw()
+        self.brick_box.draw()
+        self.mystery_box.draw()
         pygame.display.update()
 
 
@@ -30,6 +33,8 @@ class MarioGame:
         self.mario = Mario(self.game_settings,self.win)
         self.short_pipe = Pipe(self.game_settings,self.win,True,400,160)
         self.tall_pipe = Pipe(self.game_settings,self.win,False,600,135)
+        self.mystery_box = Box(self.game_settings,self.win,True,280,120)
+        self.brick_box = Box(self.game_settings,self.win,False,300,120)
         pygame.time.set_timer(USEREVENT+1,500)
         self.speed = 30
 
