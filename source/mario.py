@@ -16,11 +16,8 @@ class Mario(object):
         self.jump = game_settings.jumping_mario_images
         self.win = window
         self.jumping = False
-        self.sliding = False
-        self.slideCount = 0
         self.jumpCount = 0
         self.runCount = 0
-        self.slideUp = False
 
     def draw(self):
         if self.jumping:
@@ -31,19 +28,6 @@ class Mario(object):
                 self.jumpCount = 0
                 self.jumping = False
                 self.runCount = 0
-        elif self.sliding or self.slideUp:
-            if self.slideCount < 20:
-                self.y += 1
-            elif self.slideCount == 80:
-                self.y -= 19
-                self.sliding = False
-                self.slideUp = True
-            if self.slideCount >= 110:
-                self.slideCount = 0
-                self.slideUp = False
-                self.runCount = 0
-            # self.win.blit(self.slide[self.slideCount//10], (self.x,self.y))
-            self.slideCount += 1
 
         else:
             if self.runCount > 42:
