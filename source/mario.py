@@ -28,9 +28,9 @@ class Mario(object):
                 self.jumpCount = 0
                 self.jumping = False
                 self.runCount = 0
-
         else:
             if self.runCount > 42:
                 self.runCount = 0
-            self.win.blit(self.run[self.runCount//6], (self.x,self.y))
+                print (self.run[self.runCount//4])
+            self.win.blit(self.run[self.runCount//4], (self.x,self.y))
             self.runCount += 1
