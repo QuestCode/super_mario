@@ -19,17 +19,16 @@ class MarioGame:
     def redrawWindow(self):
         self.win.blit(self.bg, (self.bgX,0))
         self.win.blit(self.bg,(self.bgX2,0))
-        self.mario_character.draw()
+        self.mario.draw()
         pygame.display.update()
 
 
     def start(self):
-        self.mario_character = Mario(self.game_settings,self.win)
+        self.mario = Mario(self.game_settings,self.win)
         pygame.time.set_timer(USEREVENT+1,500)
         self.speed = 30
-        self.run = True
 
-        while self.run:
+        while True:
             self.redrawWindow()
 
             self.bgX -= 1.4
@@ -39,11 +38,27 @@ class MarioGame:
             if self.bgX2 < self.bg.get_width() *-1:
                 self.bgX2 = self.bg.get_width()
 
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.run = False
-                    pygame.quit()
-                if event.type == USEREVENT+1:
-                    self.speed += 1
+            self.event_handler()
 
             self.clock.tick(self.speed)
+
+    def event_handler(self):
+        for e in pygame.event.get():
+            if e.type == pygame.QUIT:
+                sys.exit()
+            if e.type == USEREVENT+1:
+                self.speed += 1
+            elif e.type == pygame.KEYDOWN:
+                if ((e.key == pygame.K_RIGHT)
+                or (e.key == pygame.K_LEFT)
+                or (e.key == pygame.K_UP)
+                or (e.key == pygame.K_DOWN)):
+                    self.mario.MoveKeyDown(e.key)
+            elif e.type == pygame.KEYUP:
+                if ((e.key == pygame.K_RIGHT)
+                or (e.key == pygame.K_LEFT)
+                or (e.key == pygame.K_UP)
+                or (e.key == pygame.K_DOWN)):
+                    self.mario.MoveKeyUp(e.key)
+                elif e.key == pygame.K_q:
+                    sys.exit()
