@@ -35,7 +35,7 @@ class MarioGame:
         self.mystery_box = Box(self.game_settings,self.win,True,280,120)
         self.brick_box = Box(self.game_settings,self.win,False,300,120)
         pygame.time.set_timer(USEREVENT+1,500)
-        pygame.time.set_timer(USEREVENT+2,random.randrange(2000,3500))
+        pygame.time.set_timer(USEREVENT+2,random.randrange(2000,8500))
         self.speed = 30
 
         while True:

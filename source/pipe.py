@@ -16,4 +16,4 @@ class Pipe:
     def draw(self):
         self.hit_box = (self.x,self.y,self.width,self.height)
         self.win.blit(self.image, (self.x,self.y))
-        pygame.draw.rect(self.win,(255,0,255),self.hit_box,3)
+        # pygame.draw.rect(self.win,(255,0,255),self.hit_box,2)

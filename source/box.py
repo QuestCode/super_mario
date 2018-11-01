@@ -10,8 +10,9 @@ class Box:
         else:
             self.image = self.game_settings.brick_box_image
         self.image_con = self.image.convert()
+        self.width,self.height = self.image_con.get_width(),self.image_con.get_height()
 
     def draw(self):
-        self.hit_box = (self.x,self.y,self.image_con.get_width(),self.image_con.get_height())
+        self.hit_box = (self.x,self.y,self.width,self.height)
         self.win.blit(self.image, (self.x,self.y))
         # pygame.draw.rect(self.win,(255,0,255),self.hit_box,3)
