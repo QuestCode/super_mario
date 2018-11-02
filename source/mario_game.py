@@ -5,15 +5,17 @@ from source.settings import Settings
 from source.mario import Mario
 from source.pipe import Pipe
 from source.box import Box
+from source.level import *
 
 class MarioGame:
 
     def __init__(self):
         self.game_settings = Settings()
+        self.level = Level1()
         pygame.init()
         self.win = pygame.display.set_mode((self.game_settings.screen_width,self.game_settings.screen_height))
         pygame.display.set_caption('Super Mario')
-        self.bg = pygame.image.load(os.path.join('assets/images','mario_bg.png')).convert()
+        self.bg = pygame.image.load(self.level.bg_image).convert()
         self.bgX = 0
         self.bgX2 = self.bg.get_width()
         self.clock = pygame.time.Clock()
@@ -56,8 +58,6 @@ class MarioGame:
     def pipes_movement(self):
         for pipe in self.pipes:
             pipe.x -= 1.4
-            if pipe.x < pipe.width * -1:
-                self.pipes.pop(self.pipes.index(pipe))
 
     def event_handler(self):
         for e in pygame.event.get():
