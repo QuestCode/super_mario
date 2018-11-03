@@ -40,37 +40,43 @@ class MarioGame:
         self.mario = Mario(self.game_settings,self.win)
         self.pipes = self.level.pipes
         self.boxes = self.level.boxes
-        pygame.time.set_timer(USEREVENT+1,500)
         self.speed = 30
 
         while True:
             self.redrawWindow()
             self.objects_movement()
-
-            self.bgX -= self.game_speed
-            self.bgX2 -= self.game_speed
-            if self.bgX < self.bg.get_width() *-1:
-                self.bgX = self.bg.get_width()
-            if self.bgX2 < self.bg.get_width() *-1:
-                self.bgX2 = self.bg.get_width()
-
+            if self.mario.moving_right:
+                self.bgX -= self.game_speed
+                self.bgX2 -= self.game_speed
+                if self.bgX < self.bg.get_width() *-1:
+                    self.bgX = self.bg.get_width()
+                if self.bgX2 < self.bg.get_width() *-1:
+                    self.bgX2 = self.bg.get_width()
+            elif self.mario.moving_left:
+                self.bgX += self.game_speed
+                self.bgX2 += self.game_speed
             self.event_handler()
 
             self.clock.tick(self.speed)
 
     def objects_movement(self):
-        for pipe in self.pipes:
-            pipe.x -= self.game_speed
+        if self.mario.moving_right:
+            for pipe in self.pipes:
+                pipe.x -= self.game_speed
 
-        for box in self.boxes:
-            box.x -= self.game_speed
+            for box in self.boxes:
+                box.x -= self.game_speed
+        elif self.mario.moving_left:
+            for pipe in self.pipes:
+                pipe.x += self.game_speed
+
+            for box in self.boxes:
+                box.x += self.game_speed
 
     def event_handler(self):
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
                 sys.exit()
-            if e.type == USEREVENT+1:
-                self.speed += 1
             elif e.type == pygame.KEYDOWN:
                 if ((e.key == pygame.K_RIGHT)
                 or (e.key == pygame.K_LEFT)

@@ -15,6 +15,8 @@ class Mario:
         self.run = self.game_settings.running_mario_images
         self.jump = self.game_settings.jumping_mario_images
         self.jumping = False
+        self.moving_left = False
+        self.moving_right = False
         self.jumpCount = 0
         self.runCount = 0
 
@@ -36,17 +38,17 @@ class Mario:
 
     def MoveKeyDown(self,key):
         if key == pygame.K_RIGHT:
-            pass
+            self.moving_right = True
         elif key == pygame.K_LEFT:
-            pass
+            self.moving_left = True
         elif key == pygame.K_UP:
             if not self.jumping:
                 self.jumping = True
 
     def MoveKeyUp(self,key):
         if key == pygame.K_RIGHT:
-            pass
+            self.moving_right = False
         elif key == pygame.K_LEFT:
-            pass
+            self.moving_left = False
         elif key == pygame.K_UP:
             pass
