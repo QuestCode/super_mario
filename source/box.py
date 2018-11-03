@@ -2,17 +2,37 @@ import pygame
 from pygame.locals import *
 
 class Box:
-    def __init__(self, game_settings,window,mystery,x,y):
-        self.game_settings,self.win,self.mystery = game_settings,window,mystery
+    def __init__(self, game_settings,window,x,y):
+        self.game_settings,self.win = game_settings,window
         self.x, self.y = x,y
-        if self.mystery:
-            self.image = self.game_settings.mystery_box_image
-        else:
-            self.image = self.game_settings.brick_box_image
+        self.image = self.game_settings.brick_box_image
         self.image_con = self.image.convert()
         self.width,self.height = self.image_con.get_width(),self.image_con.get_height()
 
     def draw(self):
         self.hit_box = (self.x,self.y,self.width,self.height)
-        self.win.blit(self.image, (self.x,self.y))
+        self.win.blit(pygame.transform.scale(self.image, (15,15)), (self.x,self.y))
         # pygame.draw.rect(self.win,(255,0,255),self.hit_box,3)
+
+class RegularBox(Box):
+    def __init__(self, game_settings,window,x,y):
+        Box.__init__(self,game_settings,window,x,y)
+        self.game_settings,self.win = game_settings,window
+        self.image = self.game_settings.brick_box_image
+
+class MysteryBox(Box):
+    def __init__(self, game_settings,window,x,y):
+        Box.__init__(self,game_settings,window,x,y)
+        self.game_settings,self.win = game_settings,window
+        self.image = self.game_settings.mystery_box_image
+
+class StairBox(Box):
+    def __init__(self, game_settings,window,x,y):
+        Box.__init__(self,game_settings,window,x,y)
+        self.game_settings,self.win = game_settings,window
+        # self.image = self.game_settings.stair_box_image
+
+    def draw(self):
+        self.hit_box = (self.x,self.y,15,15)
+        pygame.draw.rect(self.win,(255,255,255),self.hit_box,2)
+        # self.win.blit(pygame.transform.scale(self.image, (15,16)), (self.x,self.y))

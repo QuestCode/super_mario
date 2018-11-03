@@ -9,7 +9,7 @@ class Settings():
         """Initialize the game's static settings."""
         # Screen Settings
         self.game_title = 'Mario'
-        self.screen_width = 800
+        self.screen_width = 500
         self.screen_height = 235
         self.bg_color = (0,0,0)
         self.button_color = (0,0,0)
@@ -25,10 +25,12 @@ class Settings():
         self.running_mario_images = [self.__load_image('mario-' + str(x) + '.png',-1) for x in range(1,4)]
 
         self.pipe_short_image = self.__load_image('pipe_short.png')
+        self.pipe_medium_image = self.__load_image('pipe_medium.png')
         self.pipe_tall_image = self.__load_image('pipe_tall.png')
 
         self.brick_box_image = self.__load_image('box_brick.png')
         self.mystery_box_image = self.__load_image('box_mystery.png')
+        self.stair_box_image = self.__load_image('box_stair.png')
 
 
     def __load_image(self,name, colorkey=None):
