@@ -16,6 +16,12 @@ class Pipe:
         self.win.blit(self.image, (self.x,self.y))
         # pygame.draw.rect(self.win,(255,0,255),self.hit_box,2)
 
+    def collide(self,rect):
+        if rect[0] + rect[2] > self.hit_box[0] and rect[0] < self.hit_box[0] + self.hit_box[2]:
+            if rect[1] + rect[3] > self.hit_box[1]:
+                return True
+        return False
+
 class SmallPipe(Pipe):
     def __init__(self,game_settings,window,x,y):
         Pipe.__init__(self,game_settings,window,x,y)

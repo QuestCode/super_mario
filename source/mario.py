@@ -10,11 +10,12 @@ class Mario:
         self.win = window
         self.x = self.game_settings.marioX
         self.y = self.game_settings.marioY
-        self.width = self.game_settings.mario_width
-        self.height = self.game_settings.mario_height
         self.run_rt = self.game_settings.running_rt_mario_images
         self.run_lt = self.game_settings.running_lt_mario_images
         self.jump = self.game_settings.jumping_mario_images
+        self.stopped_im = self.game_settings.stopped_mario_image
+        self.image_con = self.stopped_im[0].convert()
+        self.width,self.height = self.image_con.get_width(),self.image_con.get_height()
         self.jumping = False
         self.moving_left = False
         self.moving_right = False
@@ -44,7 +45,10 @@ class Mario:
                 self.win.blit(self.run_lt[self.runCount//2][0], (self.x,self.y))
                 self.runCount += 1
             elif self.stopped:
-                self.win.blit(self.game_settings.stopped_mario_image[0], (self.x,self.y))
+                self.win.blit(self.stopped_im[0], (self.x,self.y))
+
+        self.hit_box = (self.x,self.y,self.width,self.height)
+        pygame.draw.rect(self.win,(255,0,255),self.hit_box,2)
 
     def MoveKeyDown(self,key):
         self.stopped = False

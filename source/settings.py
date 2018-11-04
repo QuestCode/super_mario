@@ -20,8 +20,6 @@ class Settings():
 
         self.marioX = 300
         self.marioY = 175
-        self.mario_width = 64
-        self.mario_height = 64
 
         self.jumping_mario_images = [self.__load_image('mario-' + str(x),-1) for x in range(8,16)]
         self.running_rt_mario_images = [self.__load_image('mario-' + str(x),-1) for x in range(1,4)]

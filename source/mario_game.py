@@ -25,11 +25,13 @@ class MarioGame:
 
     def redrawWindow(self):
         self.win.blit(self.bg, (self.bgX,0))
-        self.win.blit(self.bg,(self.bgX2,0))
+        # self.win.blit(self.bg,(self.bgX2,0))
         self.mario.draw()
 
         for pipe in self.pipes:
             pipe.draw()
+            if pipe.collide(self.mario.hit_box):
+                pass
 
         for box in self.boxes:
             box.draw()
@@ -47,14 +49,16 @@ class MarioGame:
             self.objects_movement()
             if self.mario.moving_right:
                 self.bgX -= self.game_speed
-                self.bgX2 -= self.game_speed
+                # self.bgX2 -= self.game_speed
                 if self.bgX < self.bg.get_width() *-1:
                     self.bgX = self.bg.get_width()
+                    print('Finished X')
                 if self.bgX2 < self.bg.get_width() *-1:
                     self.bgX2 = self.bg.get_width()
+                    print('Finished X2')
             elif self.mario.moving_left:
                 self.bgX += self.game_speed
-                self.bgX2 += self.game_speed
+                # self.bgX2 += self.game_speed
             self.event_handler()
 
             self.clock.tick(self.speed)
