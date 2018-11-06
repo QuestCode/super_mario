@@ -17,9 +17,15 @@ class Pipe:
         # pygame.draw.rect(self.win,(255,0,255),self.hit_box,2)
 
     def collide(self,rect):
-        if rect[0] + rect[2] > self.hit_box[0] and rect[0] < self.hit_box[0] + self.hit_box[2]:
-            if rect[1] + rect[3] > self.hit_box[1]:
-                return True
+        # rect[0] == x rect[2] == width
+        # rect[1] == y rect[4] == height
+        if rect[0] + rect[2] > self.hit_box[0]:
+            print('hit left')
+            return True
+        elif rect[0] < self.hit_box[0] + self.hit_box[2]:
+            # if rect[1] + rect[3] > self.hit_box[1]:
+            print('hit right')
+            return True
         return False
 
 class SmallPipe(Pipe):

@@ -14,6 +14,9 @@ class Box:
         self.win.blit(pygame.transform.scale(self.image[0], (15,15)), (self.x,self.y))
         # pygame.draw.rect(self.win,(255,0,255),self.hit_box,3)
 
+    # def collide_bot(self,rect):
+    #     if rect[0]
+
 class RegularBox(Box):
     def __init__(self, game_settings,window,x,y):
         Box.__init__(self,game_settings,window,x,y)

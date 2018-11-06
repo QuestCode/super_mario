@@ -24,6 +24,10 @@ class Settings():
         self.jumping_mario_images = [self.__load_image('mario-' + str(x),-1) for x in range(7,16)]
         self.running_rt_mario_images = [self.__load_image('mario-' + str(x),-1) for x in range(1,4)]
         self.running_lt_mario_images = [self.__load_image('mario-' + str(x)+'-lt',-1) for x in range(1,4)]
+
+        self.goomba_walking_images = [self.__load_image('goomba-0',-1),self.__load_image('goomba-1',-1)]
+        self.goomba_squish_image = self.__load_image('goomba-2',-1)
+        
         # self.reverse_image()
         self.stopped_mario_image = self.__load_image('mario-0')
 
