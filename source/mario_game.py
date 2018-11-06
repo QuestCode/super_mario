@@ -7,6 +7,9 @@ from source.pipe import Pipe
 from source.box import Box
 from source.level import *
 
+
+"""Prof DropBox https://www.dropbox.com/s/qo1hbcjh2sikbge/mario_physics.zip?dl=0"""
+
 class MarioGame:
 
     def __init__(self):
@@ -28,6 +31,9 @@ class MarioGame:
         # self.win.blit(self.bg,(self.bgX2,0))
         self.mario.draw()
 
+        for enemy in self.enemies:
+            enemy.draw()
+
         for pipe in self.pipes:
             pipe.draw()
             if pipe.collide(self.mario.hit_box):
@@ -42,7 +48,8 @@ class MarioGame:
         self.mario = Mario(self.game_settings,self.win)
         self.pipes = self.level.pipes
         self.boxes = self.level.boxes
-        self.speed = 30
+        self.enemies = self.level.enemies
+        self.speed = 50
 
         while True:
             self.redrawWindow()

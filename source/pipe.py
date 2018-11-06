@@ -20,11 +20,11 @@ class Pipe:
         # rect[0] == x rect[2] == width
         # rect[1] == y rect[4] == height
         if rect[0] + rect[2] > self.hit_box[0]:
-            print('hit left')
+            # print('hit left')
             return True
         elif rect[0] < self.hit_box[0] + self.hit_box[2]:
             # if rect[1] + rect[3] > self.hit_box[1]:
-            print('hit right')
+            # print('hit right') 
             return True
         return False
 

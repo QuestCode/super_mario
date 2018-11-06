@@ -26,7 +26,7 @@ class Mario:
     def draw(self):
         if self.jumping:
             self.y -= self.jumpList[self.jumpCount] * 1.2
-            self.win.blit(self.jump[self.jumpCount//22][0], (self.x,self.y))
+            self.win.blit(self.jump[self.jumpCount//5][0], (self.x,self.y))
             self.jumpCount += 1
             if self.jumpCount > 20:
                 self.y = self.game_settings.marioY

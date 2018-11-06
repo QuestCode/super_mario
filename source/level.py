@@ -2,6 +2,7 @@ import os
 import pygame
 from source.pipe import *
 from source.box import *
+from source.enemy import *
 
 class Level:
     def __init__(self,game_settings,win,image):
@@ -9,12 +10,18 @@ class Level:
         self.bg_image = os.path.join('assets/images',image)
         self.boxes = []
         self.pipes = []
+        self.enemies = []
 
 class Level1(Level):
     def __init__(self,game_settings,win):
         Level.__init__(self,game_settings,win,'mario_bg.png')
         self.add_pipes()
         self.add_boxes()
+        self.add_enemies()
+
+    def add_enemies(self):
+        ground_height = 190
+        self.enemies.append(Goomba(self.game_settings,self.win,500,ground_height))
 
     def add_pipes(self):
         short_pipe_h = 178
