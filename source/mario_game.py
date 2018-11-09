@@ -98,14 +98,12 @@ class MarioGame:
             elif e.type == pygame.KEYDOWN:
                 if ((e.key == pygame.K_RIGHT)
                 or (e.key == pygame.K_LEFT)
-                or (e.key == pygame.K_UP)
-                or (e.key == pygame.K_DOWN)):
+                or (e.key == pygame.K_UP)):
                     self.mario.MoveKeyDown(e.key)
             elif e.type == pygame.KEYUP:
                 if ((e.key == pygame.K_RIGHT)
                 or (e.key == pygame.K_LEFT)
-                or (e.key == pygame.K_UP)
-                or (e.key == pygame.K_DOWN)):
+                or (e.key == pygame.K_UP)):
                     self.mario.MoveKeyUp(e.key)
                 elif e.key == pygame.K_q:
                     sys.exit()

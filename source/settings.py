@@ -20,11 +20,26 @@ class Settings():
 
         self.marioX = self.HW
         self.marioY = 175
+        self.small_mario_Y = 192
 
-        self.big_stopped_mario_image = self.__load_image('mario-0')
-        self.big_jumping_mario_images = [self.__load_image('mario-' + str(x),-1) for x in range(16,21)]
-        self.big_running_rt_mario_images = [self.__load_image('mario-' + str(x),-1) for x in range(1,4)]
-        self.big_running_lt_mario_images = [self.__load_image('mario-' + str(x)+'-lt',-1) for x in range(1,4)]
+
+        """Small Mario Images"""
+        self.small_stopped_mario_image = self.__load_mario_image('small_mario','small_mario-0')
+        self.small_jumping_mario_image = self.__load_mario_image('small_mario','small_mario-5')
+        self.small_running_rt_mario_images = [self.__load_mario_image('small_mario','small_mario-' + str(x),-1) for x in range(1,3)]
+        self.small_running_lt_mario_images = [self.__load_mario_image('small_mario','small_mario-' + str(x)+'-lt',-1) for x in range(1,3)]
+
+        """Big Mario Images"""
+        self.big_stopped_mario_image = self.__load_mario_image('big_mario','mario-0')
+        self.big_jumping_mario_images = [self.__load_mario_image('big_mario','mario-' + str(x),-1) for x in range(16,21)]
+        self.big_running_rt_mario_images = [self.__load_mario_image('big_mario','mario-' + str(x),-1) for x in range(1,4)]
+        self.big_running_lt_mario_images = [self.__load_mario_image('big_mario','mario-' + str(x)+'-lt',-1) for x in range(1,4)]
+
+        """Fire Mario Images"""
+        self.fire_stopped_mario_image = self.__load_mario_image('fire_mario','fire_mario-0')
+        self.fire_jumping_mario_images = [self.__load_mario_image('fire_mario','fire_mario-' + str(x),-1) for x in range(16,21)]
+        self.fire_running_rt_mario_images = [self.__load_mario_image('fire_mario','fire_mario-' + str(x),-1) for x in range(1,4)]
+        self.fire_running_lt_mario_images = [self.__load_mario_image('fire_mario','fire_mario-' + str(x)+'-lt',-1) for x in range(1,4)]
 
         self.goomba_walking_images = [self.__load_image('goomba-0',-1),self.__load_image('goomba-1',-1)]
         self.goomba_squish_image = self.__load_image('goomba-2',-1)
@@ -55,15 +70,30 @@ class Settings():
             image.set_colorkey(colorkey, RLEACCEL)
         return image , fullname
 
+    def __load_mario_image(self,foldername,name, colorkey=None):
+        self.path = os.path.join('assets/images',foldername)
+        fullname = os.path.join(self.path, name)
+        fullpath = fullname+'.png'
+        try:
+            image = pygame.image.load(fullpath)
+        except:
+            print ('Cannot load image:', fullpath)
+            raise SystemExit
+        if colorkey is not None:
+            if colorkey is -1:
+                colorkey = image.get_at((0,0))
+            image.set_colorkey(colorkey, RLEACCEL)
+        return image , fullname
+
     # def flip_image(self,image_path,saved_location):
     #     image_obj = Image.open(image_path)
     #     rotated_image = image_obj.transpose(Image.FLIP_LEFT_RIGHT)
     #     rotated_image.save(saved_location)
     #     return rotated_image
-
+    #
     # def reverse_image(self):
     #     self.running_lt_mario_images = []
-    #     for image in self.running_rt_mario_images:
+    #     for image in self.fire_running_rt_mario_images:
     #         flipped = self.flip_image(str(image[1])+'.png',str(image[1])+'-lt.png')
     #         self.running_lt_mario_images.append(flipped)
 
