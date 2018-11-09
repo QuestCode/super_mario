@@ -21,15 +21,15 @@ class Settings():
         self.marioX = self.HW
         self.marioY = 175
 
-        self.jumping_mario_images = [self.__load_image('mario-' + str(x),-1) for x in range(16,21)]
-        self.running_rt_mario_images = [self.__load_image('mario-' + str(x),-1) for x in range(1,4)]
-        self.running_lt_mario_images = [self.__load_image('mario-' + str(x)+'-lt',-1) for x in range(1,4)]
+        self.big_stopped_mario_image = self.__load_image('mario-0')
+        self.big_jumping_mario_images = [self.__load_image('mario-' + str(x),-1) for x in range(16,21)]
+        self.big_running_rt_mario_images = [self.__load_image('mario-' + str(x),-1) for x in range(1,4)]
+        self.big_running_lt_mario_images = [self.__load_image('mario-' + str(x)+'-lt',-1) for x in range(1,4)]
 
         self.goomba_walking_images = [self.__load_image('goomba-0',-1),self.__load_image('goomba-1',-1)]
         self.goomba_squish_image = self.__load_image('goomba-2',-1)
 
         # self.reverse_image()
-        self.stopped_mario_image = self.__load_image('mario-0')
 
         self.pipe_short_image = self.__load_image('pipe_short')
         self.pipe_medium_image = self.__load_image('pipe_medium')
