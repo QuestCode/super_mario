@@ -26,9 +26,9 @@ class Mario:
     def draw(self):
         if self.jumping:
             self.y -= self.jumpList[self.jumpCount] * 1.2
-            self.win.blit(self.jump[self.jumpCount//5][0], (self.x,self.y))
+            self.win.blit(self.jump[self.jumpCount//10][0], (self.x,self.y))
             self.jumpCount += 1
-            if self.jumpCount > 20:
+            if self.jumpCount > 25:
                 self.y = self.game_settings.marioY
                 self.jumpCount = 0
                 self.jumping = False
@@ -58,6 +58,7 @@ class Mario:
             self.moving_left = True
         elif key == pygame.K_UP:
             if not self.jumping:
+                self.game_settings.play_sound('jump-small.wav')
                 self.jumping = True
 
     def MoveKeyUp(self,key):

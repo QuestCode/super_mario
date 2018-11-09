@@ -21,8 +21,9 @@ class MarioGame:
         """Level Initialization"""
         self.level = Level1(self.game_settings,self.win)
         self.bg = pygame.image.load(self.level.bg_image).convert()
+
         self.bgX = 0
-        self.bgX2 = self.bg.get_width()
+        # self.bgX2 = self.bg.get_width()
         self.clock = pygame.time.Clock()
         self.game_speed = 6.5
 
@@ -54,18 +55,36 @@ class MarioGame:
         while True:
             self.redrawWindow()
             self.objects_movement()
+            if self.bgX < -2870:
+                print('game over')
+                sys.exit()
+
+            # print('bgX x: '+str(self.bgX))
             if self.mario.moving_right:
                 self.bgX -= self.game_speed
                 # self.bgX2 -= self.game_speed
+                self.mario.x += 1
+                if self.mario.x > self.game_settings.screen_width:
+                    # print(self.mario.x)
+                    self.mario.x = self.game_settings.HW
                 if self.bgX < self.bg.get_width() *-1:
                     self.bgX = self.bg.get_width()
                     print('Finished X')
-                if self.bgX2 < self.bg.get_width() *-1:
-                    self.bgX2 = self.bg.get_width()
-                    print('Finished X2')
+                # if self.bgX2 < self.bg.get_width() *-1:
+                #     self.bgX2 = self.bg.get_width()
+                #     print('Finished X2')
             elif self.mario.moving_left:
                 self.bgX += self.game_speed
+                self.mario.x -= 1
+                if self.mario.x < 0:
+                    self.mario.x = self.game_settings.HW
                 # self.bgX2 += self.game_speed
+                if self.bgX < self.bg.get_width() *-1:
+                    self.bgX = self.bg.get_width()
+                    print('Finished X')
+                # if self.bgX2 < self.bg.get_width() *-1:
+                #     self.bgX2 = self.bg.get_width()
+                #     print('Finished X2')
             self.event_handler()
 
             self.clock.tick(self.speed)

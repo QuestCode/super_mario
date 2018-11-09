@@ -11,14 +11,14 @@ class Settings():
         """Initialize the game's static settings."""
         # Screen Settings
         self.game_title = 'Mario'
-        self.screen_width = 500
-        self.screen_height = 235
+        self.screen_width,self.screen_height = 500,235
+        self.HW, self.HH = self.screen_width/2, self.screen_height/2
         self.bg_color = (0,0,0)
         self.button_color = (0,0,0)
         self.text_color = (255,255,255)
         # self.read_score_file()
 
-        self.marioX = 300
+        self.marioX = self.HW
         self.marioY = 175
 
         self.jumping_mario_images = [self.__load_image('mario-' + str(x),-1) for x in range(16,21)]
@@ -69,7 +69,7 @@ class Settings():
 
     def play_sound(self,name):
         fullname = os.path.join('assets', 'sounds')
-        fullname = os.path.join(fullname,'pacman_'+name)
+        fullname = os.path.join(fullname,name)
         try:
             pygame.mixer.music.load(fullname)
             pygame.mixer.music.play()
