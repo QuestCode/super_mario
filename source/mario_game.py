@@ -22,6 +22,7 @@ class MarioGame:
         self.level = Level1(self.game_settings,self.win)
         self.bg = pygame.image.load(self.level.bg_image).convert()
 
+        self.startX = 0
         self.bgX = 0
         # self.bgX2 = self.bg.get_width()
         self.clock = pygame.time.Clock()
@@ -55,36 +56,22 @@ class MarioGame:
         while True:
             self.redrawWindow()
             self.objects_movement()
-            if self.bgX < -2870:
+            if self.bgX < -3000:
                 print('game over')
                 sys.exit()
 
             # print('bgX x: '+str(self.bgX))
             if self.mario.moving_right:
                 self.bgX -= self.game_speed
-                # self.bgX2 -= self.game_speed
                 self.mario.x += 1
-                if self.mario.x > self.game_settings.screen_width:
-                    # print(self.mario.x)
+                if self.mario.x > self.game_settings.HW:
                     self.mario.x = self.game_settings.HW
-                if self.bgX < self.bg.get_width() *-1:
-                    self.bgX = self.bg.get_width()
-                    print('Finished X')
-                # if self.bgX2 < self.bg.get_width() *-1:
-                #     self.bgX2 = self.bg.get_width()
-                #     print('Finished X2')
+                    self.startX = self.bgX
             elif self.mario.moving_left:
-                self.bgX += self.game_speed
-                self.mario.x -= 1
-                if self.mario.x < 0:
-                    self.mario.x = self.game_settings.HW
-                # self.bgX2 += self.game_speed
-                if self.bgX < self.bg.get_width() *-1:
-                    self.bgX = self.bg.get_width()
-                    print('Finished X')
-                # if self.bgX2 < self.bg.get_width() *-1:
-                #     self.bgX2 = self.bg.get_width()
-                #     print('Finished X2')
+                if not self.bgX > self.startX:
+                    # print('yes')
+                    self.bgX += self.game_speed
+                    self.mario.x -= 1
             self.event_handler()
 
             self.clock.tick(self.speed)
@@ -97,11 +84,12 @@ class MarioGame:
             for box in self.boxes:
                 box.x -= self.game_speed
         elif self.mario.moving_left:
-            for pipe in self.pipes:
-                pipe.x += self.game_speed
+            if not self.bgX > self.startX:
+                for pipe in self.pipes:
+                    pipe.x += self.game_speed
 
-            for box in self.boxes:
-                box.x += self.game_speed
+                for box in self.boxes:
+                    box.x += self.game_speed
 
     def event_handler(self):
         for e in pygame.event.get():
